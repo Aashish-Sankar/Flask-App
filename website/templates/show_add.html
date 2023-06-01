@@ -1,0 +1,62 @@
+{% extends "admin_base.html" %} {% block title %}Add Show{% endblock %}
+{%block content%}
+<br/>
+<form method="POST" class = 'form'>
+<h3>New Show</h3>
+<br/>
+<div class = "form-group">
+<label for = "image">Image </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "img" 
+name = "img" 
+placeholder = "Poster Link"
+/>
+<br/>
+<label for = "name"> Name </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "name" 
+name = "name" 
+placeholder = "Show Name"
+/>
+</div>
+<br/>
+<div class = "form-group">
+<label for = "rating"> Rating </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "rating" 
+name = "rating" 
+placeholder = "Enter Rating"
+ />
+</div>
+<br/>
+<div class = "form-group">
+<label for = "price"> Price </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "price" 
+name = "price" 
+placeholder = "Enter Price"
+/>
+</div>
+<br/>
+<div class = "form-group">
+<label for = "tags"> Tags </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "tags" 
+name = "tags" 
+placeholder = "Enter Tags"
+ />
+</div>
+<br/>
+<button type="submit" class = "btn btn-primary">Add</button>
+</form>
+{%endblock%}

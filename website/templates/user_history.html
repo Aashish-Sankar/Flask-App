@@ -1,0 +1,24 @@
+{% extends 'user_base.html' %}
+
+{% block content %}
+    <section>
+    <br/>
+        <h2>&nbsp;&nbsp;Current Bookings&nbsp;&nbsp;</h2>
+            {% if now_bookings | length > 0 %}
+                {% set bookings = now_bookings %}
+                {% include 'user_bookings.html' %}
+            
+            {% else%}
+                <p style="text-align: center">YOU DON'T HAVE ANY BOOKINGS.</p>
+            {% endif %}
+        <br/>
+        <h2>&nbsp;&nbsp;Past Bookings&nbsp;&nbsp;</h2>
+            {% if past_bookings | length > 0 %}
+                {% set bookings = past_bookings %}
+                {% include 'user_bookings.html' %}
+        
+            {% else%}
+                <p style="text-align: center">YOU DON'T HAVE PAST BOOKINGS.</p>
+            {% endif %}
+    </section>
+{% endblock %}

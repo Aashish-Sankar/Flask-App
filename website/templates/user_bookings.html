@@ -1,0 +1,38 @@
+
+{% block content %}
+
+<br/>
+
+<table class="table-bookings table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Screen</th>
+        <th>Seats Reserved</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Total Cost</th>
+        <th>Booked Day</th>
+      
+    </tr>
+    </thead>
+    <tbody>
+    {% for booking in bookings %}
+    <tr>
+        <td><img src='{{ booking.screening.show.img }}' width=100 style="border-radius: 15px;"></td>
+        <td>{{ booking.screening.show.name }}</td>
+        <td>{{ booking.screening.venue.name }}</td>
+        <td>{{ booking.seats }}</td>
+        <td>{{ booking.screening.day.strftime('%d-%m-%Y') }}</td>
+        <td>{{ booking.screening.time.strftime('%H:%M') }}</td>
+        <td>Rs.{{ booking.cost }}</td>
+        <td>{{ booking.date_time }}</td>
+        <td></td> 
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

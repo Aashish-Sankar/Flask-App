@@ -1,0 +1,50 @@
+{% extends "admin_base.html" %} {% block name %}Admin Home{% endblock %}
+{%block content%}
+<br />
+{% if screening | length > 0 %}
+
+<h1 style="text-align: center;">SCREENINGS</h1>
+<br/>
+<div class="row row-cols-1 row-cols-md-3 g-5">
+    {% for screening, result in packed: %}
+    {% set proj = "proj" ~ screening.id %}
+    {% set seats_available = screening.venue.capacity - result %}
+    <div class="col">
+    <div class="card h-100" >
+      <div class="card-body" >
+      <tr id="{{proj}}">
+        <p>Name: {{ screening.show.name }}</p>
+        <p>Venue: {{ screening.venue.name }}</p>
+        <p>Total Seats: {{ screening.venue.capacity }}</p>
+        <p>Seats Available: {% print(seats_available) %}</p>
+        <p>Seats Booked: {{ result }}</p>
+        <p>Show Date: {{ screening.day.strftime('%d-%m-%Y') }}</p>
+        <p>Show Time: {{ screening.time }}</p>
+        <p>Location: {{ screening.venue.place}}, {{ screening.venue.location }}</p>
+        <p>
+          <a
+            href="{{ url_for('views.delete', id=screening.id) }}"
+            onclick="return confirm('Are you sure you want to delete this item?')"
+            >Delete</a
+          > |
+          <a
+            href="{{ url_for('views.edit', id=screening.id) }}"
+            >Edit</a
+          >
+        </p>
+        </tr>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+    <br/>
+    <div class = 'card splcard'><a class="button" href="{{ url_for('views.add')}}" style="display:block;"><img src='https://cdn-icons-png.flaticon.com/512/8191/8191584.png' width="50" height="50"></a></div>
+
+  
+</div>
+{% else%}
+  <p style="text-align: center">THERE ARE NO SCHEDULED SCREENINGS</p>
+  <p style="text-align: center"><a class="button" href="{{ url_for('views.add')}}" style="display:block;">Add new Screening</a></p>
+{% endif %}
+<br/>
+{%endblock%}

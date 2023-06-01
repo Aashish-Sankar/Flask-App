@@ -1,0 +1,42 @@
+{% extends "admin_base.html" %} {% block name %}Venues{% endblock %}
+{%block content%}
+<br />
+<h1 style="text-align: center;">VENUES</h1>
+<br/>
+{% if venues | length > 0 %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    
+    {% for venue in venues%}
+
+    <div class="col">
+    <div class="card h-100" >
+      <div class="card-body" >
+        <p>Name: {{ venue.name }}</p>
+        <p>Capacity: {{ venue.capacity }}</p>
+        <p>Location: {{ venue.location }}</p>
+        <p>City: {{ venue.place }}</p>
+
+        <p>
+          <a
+            href="{{ url_for('views.delete_venue', id=venue.id)}}"
+            onclick="return confirm('Are you sure you want to delete this item?')"
+            >Delete</a
+          > |
+          <a
+            href="{{ url_for('views.edit_venue', id=venue.id)}}"
+            >Edit</a
+          >
+        </p>
+        </tr>
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+    <div class = 'card splcard'><a class="button" href="{{ url_for('views.add_venue')}}" style="display:block;"><img src='https://cdn-icons-png.flaticon.com/512/8191/8191584.png' width="50" height="50"></a></div>
+  
+</div>
+{% else%}
+  <p style="text-align: center">THERE ARE NO VENUES</p>
+  <p style="text-align: center"><a class="button" href="{{ url_for('views.add_venue')}}" style="display:block;">Add new Venue</a></p>
+{% endif %}
+{%endblock%}

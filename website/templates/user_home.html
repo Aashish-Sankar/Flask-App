@@ -1,0 +1,54 @@
+{% extends 'user_base.html' %}
+
+{% block content %}
+
+
+<br/>
+
+<h1 class = 'text-center'>Upcoming Shows</h1>
+
+<br/>
+
+
+<table class="table-movies table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Show</th>
+        <th>Rating</th>
+        <th>Screen</th>
+        <th>Seats Available</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Location</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for screening, result in packed: %}
+
+        {% set proj = "proj"  ~ screening.id  %}
+        {% set seats_available = screening.venue.capacity - result %}
+        {% if screening in screenings%}
+        <tr id="{{proj}}">
+            <td><img src={{screening.show.img}} width=120 style="border-radius: 15px;"></td>
+            <td>{{ screening.show.name }}</td>
+            <td>{{ screening.show.rating}}</td>
+            <td>{{ screening.venue.name }}</td>
+            <td>{% print(seats_available) %}</td>
+            <td>{{ screening.day.strftime('%d-%m-%Y') }}</td>
+            <td>{{ screening.time.strftime('%H:%M') }}</td>
+            <td>{{ screening.venue.location }}, {{ screening.venue.place}}</td>
+            {% if seats_available >0 %}
+            <td><a  href="{{ url_for('views.booking', id=screening.id) }}">Buy Ticket</a></td>    
+            {% else %}
+            <td>SOLD OUT</td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

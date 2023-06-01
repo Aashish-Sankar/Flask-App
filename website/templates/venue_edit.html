@@ -1,0 +1,57 @@
+{% extends "admin_base.html" %} {% block title %}Edit Venue{% endblock %}
+{%block content%}
+<br/>
+<form method="POST", action ="{{ url_for('views.edit_venue_post', id=current_data.id) }}", class = 'form' >
+<h3>Edit Venue</h3>
+<br/>
+<div class = "form-group">
+<label for = "name"> Name </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "name" 
+name = "name" 
+placeholder = "Venue Name"
+value = {{current_data.name}}
+/>
+</div>
+<br/>
+<div class = "form-group">
+<label for = "capacity"> Capacity </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "capacity" 
+name = "capacity" 
+placeholder = "Enter capacity"
+value = {{current_data.capacity}}
+ />
+</div>
+<br/>
+<div class = "form-group">
+<label for = "location"> Location </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "location" 
+name = "location" 
+placeholder = "Enter locaton"
+value = {{current_data.location}}
+/>
+</div>
+<br/>
+<div class = "form-group">
+<label for = "place"> City </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "place" 
+name = "place" 
+placeholder = "Enter City"
+value = {{current_data.place}}
+ />
+</div>
+<br/>
+<button type="submit" class = "btn btn-primary">Edit</button>
+</form>
+{%endblock%}

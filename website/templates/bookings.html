@@ -1,0 +1,48 @@
+{% extends 'user_base.html' %}
+
+{% block content %}
+<br/>
+{% if screening != None %}
+
+    <section class='form' >
+        <h2 class = 'text-center'>&nbsp;&nbsp;Buy Ticket&nbsp;&nbsp;</h2>
+        <form action="{{ url_for('views.booking_post') }}" method="post">
+        <br/>
+            
+            
+           <div><label>{{screening.show.name}}: </label>
+            <select id="screening" name="screening">
+                {% for proj in screenings %}
+                    {% if proj.id == screening.id %}
+                    <option value="{{proj.id}}" selected><b>Day:</b>{{proj.day.strftime('%d-%m-%Y')}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time:{{proj.time.strftime('%H:%M')}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Venue: {{proj.venue.name}}</option>
+                    {% else %}
+                    <option value="{{proj.id}}"><b>Day:</b>{{proj.day.strftime('%d-%m-%Y')}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Time:{{proj.time.strftime('%H:%M')}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Venue: {{proj.venue.name}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            </div> 
+            
+            <div>
+                <div><label><br>Number of seats: <br></label>
+                    <select id="seats" name="seats" onchange='Cost({{screening.show.price}});'>
+                    <option name = 'option-seats' id="option-seats" value="1" selected>1</option>
+                        {% for i in range (2,11) %}
+                        <option name = 'option-seats' id="option-seats" value="{{i}}">{{i}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <br/>
+
+
+                <div><label>Total Cost (Each ticket: Rs.{{screening.show.price}}) : </label><input id="price" name ='totalPrice' value="0" readonly></div>
+                <br/>
+                <div><input class='submit' type="submit" value="Buy"/></div>             
+                <br/>
+            </div>
+            
+        </form>
+
+    </section>
+{% endif %}
+
+{% endblock %}

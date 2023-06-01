@@ -1,0 +1,47 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+
+{% if screening != None %}
+<section class='form'>
+<br/>
+    <h2 style="text-align:center">&nbsp;&nbsp;ADD A NEW SCREENING&nbsp;&nbsp;</h2>
+    <br/>
+    <form action="{{ url_for('views.add_post') }}" method="post">
+
+        <div>
+            <label>Show: <br></label>
+            <select name="Shows" required>
+            {% for show in Shows %}
+                <option value="{{show.id}}">{{show.name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label><br>Venue: <br></label>
+            <select name="venue" required>
+            {% for venue in venues %}
+                <option value="{{venue.id}}">{{venue.name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label><br>Date:<br></label>
+            <input type="date" name="day" value="{{current_day}}" min="2021-01-01" max="2023-12-31" required>
+        </div>
+        <div>
+            <label><br>Time:<br></label>
+            <input type="time" name="time" value="00:00" required>
+        </div>
+        <br/>
+        <div><input class='submit' type="submit" value="Add"/></div>
+     
+      
+    </form>
+
+</section>
+{% endif %}
+
+
+{% endblock %}

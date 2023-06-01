@@ -1,0 +1,68 @@
+{% extends "admin_base.html" %} {% block title %}Edit Show{% endblock %}
+{%block content%}
+<br/>
+<form class = 'form' method="POST", action ="{{ url_for('views.edit_show_post', id=current_data.id) }}" >
+<h3>Edit Show</h3>
+<br/>
+<div class = "form-group">
+<label for = "image"> Image</label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "img" 
+name = "img" 
+placeholder = "Poster Link"
+value = "{{current_data.img}}"
+/>
+<br/>
+<div class = "form-group">
+<label for = "name"> Name </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "name" 
+name = "name" 
+placeholder = "Show Name"
+value = {{current_data.name}}
+/>
+</div>
+<br/>
+<div class = "form-group">
+<label for = "rating"> Rating </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "rating" 
+name = "rating" 
+placeholder = "Enter Rating"
+value = {{current_data.rating}}
+ />
+</div>
+<br/>
+<div class = "form-group">
+<label for = "price"> Price </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "price" 
+name = "price" 
+placeholder = "Enter Price"
+value = {{current_data.price}}
+/>
+</div>
+<br/>
+<div class = "form-group">
+<label for = "tags"> Tags </label>
+<input 
+type = "text" 
+class = "form-control" 
+id = "tags" 
+name = "tags" 
+placeholder = "Enter Tags"
+value = {{current_data.tags}}
+ />
+</div>
+<br/>
+<button type="submit" class = "btn btn-primary">Edit</button>
+</form>
+{%endblock%}
