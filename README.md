@@ -1,9 +1,3 @@
-
-# Movie Ticket Booking App using Flask
-
-This is a project that utilizes Flask and Python as backend for a ticket booking app.
-
-
 # Movie Ticket Booking App using Flask
 
 This is a project that utilizes Flask and Python as backend for a ticket booking app.
